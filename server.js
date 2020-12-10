@@ -14,10 +14,10 @@ import handleProfile from './controllers/Profile.js';
 const db = knex({
   client: 'pg',
   connection: {
-    host : '127.0.0.1',
-    user : 'postgres',
-    password : 'pa55word',
-    database : 'smartbrain'
+   host : process.env.DATABASE_URL,
+  	ssl: {
+   	rejectUnauthorized: false
+	}
   }
 });
 
@@ -33,8 +33,6 @@ app.post('/register', (req, res) => handleRegister(req, res, db, bcrypt));
 app.get('/profile/:id', (req, res) => handleProfile(req, res, db));
 app.put('/image', (req, res) => handleImage(req, res, db));
 app.post('/imageapi', (req, res) => handleApiCall(req, res));
-
-
 
 app.listen(process.env.PORT || 3001, () =>{
 	console.log('app running on port ' + process.env.PORT);
