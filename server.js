@@ -9,8 +9,6 @@ import handleSignin from './controllers/Signin.js';
 import {handleImage, handleApiCall} from './controllers/Image.js';
 import handleProfile from './controllers/Profile.js';
 
-
-
 const db = knex({
   client: 'pg',
   connection: {
